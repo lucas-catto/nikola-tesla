@@ -47,7 +47,6 @@ main {
     flex-wrap:             wrap;
     gap:                   20px;
     padding:               30px 20px;
-
 }
 
 img {
@@ -56,10 +55,5 @@ img {
     height:                auto;
     vertical-align:        middle;
     border:                1px solid white;
-    transition:            .2s;
-}
-
-img:hover {
-    transform:             scale(1.1);
     transition:            .2s;
 }
