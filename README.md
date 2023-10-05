@@ -1,2 +1,2 @@
 # nikola-tesla
-Website um homenagem ao Nikola Tesla
+Website em homenagem ao Nikola Tesla
