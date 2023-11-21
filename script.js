@@ -1,35 +1,47 @@
 
-document.addEventListener("DOMContentLoaded", function(){
+fetch('./JSON/NikolaTesla.json')
+    .then(response => response.json())
+    .then(data => {
 
-    fetch('./JSON/1.json')
+        const itemList = document.querySelector('.item-list');
 
-        .then(response => response.json())
-        .then(data => {
+        data.NikolaTesla.forEach(nikola => {
             
-            let tesla = '';
+            const item = document.createElement('li');
 
-            data.NikolaTesla.forEach(nikola => {
-                tesla += ` <img src="${nikola.Image}"> `;
-            });
-            document.getElementById('1').innerHTML = tesla;
-        })
-        .catch(error = console.error('Error to load the images: ', error));
+            item.innerHTML = `<img src="${ nikola.Image }">`;
+            item.addEventListener('click', () => showDetails(nikola));
 
-});
+            itemList.appendChild(item);
+        });
+    });
 
-document.addEventListener("DOMContentLoaded", function(){
+function showDetails (nikola) {
 
-    fetch('./JSON/2.json')
+    const modal = document.querySelector('#details-modal');
 
-        .then(response => response.json())
-        .then(data => {
-        
-            let tesla = '';
-    
-            data.NikolaTesla.forEach(nikola => {
-                tesla += ` <img src="${nikola.Image}"> `;
-            });
-            document.getElementById('2').innerHTML = tesla;
-        })
-        .catch(error = console.error('Error to load the images: ', error));
+    modal.innerHTML = `
+        <div class="modal-content">
+            <img src="${ nikola.Image  }">
+            <p>${        nikola.Date   }</p>
+            <p>${        nikola.Prompt }</p>
+            <button id="close-modal">Close</button>
+        </div>
+    `;
+
+    modal.style.display = 'flex';
+
+    const closeButton = document.querySelector('#close-modal');
+
+    closeButton.addEventListener('click', () => {
+        modal.style.display = 'none';
+    });
+}
+
+const modal = document.querySelector('#details-modal');
+
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.style.display = 'none';
+    }
 });
